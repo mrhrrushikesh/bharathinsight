@@ -1,0 +1,125 @@
+/* RESET / BASE STYLES */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: sans-serif;
+  /* If content is hidden behind the fixed header,
+     add margin-top: <header height> here or on a .main-content wrapper */
+  margin-top: 200px;
+}
+
+/* 
+  HEADER WRAPPER
+  - Entire container is fixed at top
+  - We'll use .logo-bar for the top black area (z-index: 2)
+  - nav-links is behind it (z-index: 1)
+*/
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000; 
+  /* We won't define a fixed height here; 
+     the .logo-bar will have its own height */
+}
+
+/* 
+  Hide the nav-links by sliding them up 
+  when .header has the class .hide-nav 
+*/
+.hide-nav .nav-links {
+  transform: translateY(-100%);
+}
+
+/* 
+  BLACK BAR FOR LOGO 
+  - Always visible, top portion of header
+  - Higher z-index than nav-links so nav can slide "behind" it
+*/
+.logo-bar {
+  position: relative;
+  z-index: 2;          /* ensures the logo bar is on top */
+  background-color: #000;
+  height: 80px;        /* adjust as you wish */
+  display: flex;
+  align-items: center; /* vertically center the logo container */
+  justify-content: center;
+}
+
+/* LOGO CONTAINER */
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  font-size: 1.5rem;
+  color: #fff;
+  margin-left: 8px;
+}
+
+.live-dot {
+  width: 10px;
+  height: 10px;
+  background-color: red;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 5px;
+  animation: blink 2s infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0; }
+}
+
+/* 
+  NAV LINKS
+  - Absolutely positioned BELOW the .logo-bar
+  - Lower z-index so it slides behind the bar
+*/
+.nav-links {
+  position: absolute;
+  top: 80px;     /* directly below .logo-bar (80px tall) */
+  left: 0;
+  width: 100%;
+  background-color: #000;
+  z-index: 1;    /* behind .logo-bar (z-index: 2) */
+
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  padding: 10px 0;
+
+  /* We'll slide them up/down using transform */
+  transform: translateY(0);
+  transition: transform 0.3s ease;
+}
+
+/* Individual link styles */
+.nav-link {
+  text-decoration: none;
+  color: #f6f6f6;
+  font-size: 1.42rem;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  padding: 8px 12px;
+  border-radius: 4px;
+}
+
+.nav-link:hover {
+  background-color: rgba(66, 61, 61, 0.1);
+  box-shadow: 0 2px 5px rgba(233, 229, 229, 0.3);
+}
+
+/* OPTIONAL: Smaller text on narrower screens */
+@media (max-width: 768px) {
+  .nav-link {
+    font-size: 1rem;
+  }
+}
