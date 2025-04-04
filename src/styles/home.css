@@ -1,46 +1,32 @@
-/* home.css - Updated styles */
+/* --- Base & Theme --- */
+body {
+  background-color: #1a1a1a;
+  color: #e0e0e0;
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
 
-/* --- General & Welcome --- */
 .home-container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
-  font-family: Arial, sans-serif;
-  color: #333;
-  background-color: #f9f9f9; /* Or your preferred background */
-}
-
-.welcome-section {
-  text-align: center;
-  margin-bottom: 40px;
-  padding: 20px 0;
-}
-
-.welcome-section h1 {
-  font-size: 2.5rem;
-  margin-bottom: 10px;
-  color: #222;
-}
-
-.welcome-section p {
-  font-size: 1.2rem;
-  color: #666;
 }
 
 /* --- Common Post Elements --- */
 .post-image-container {
   width: 100%;
-  overflow: hidden; /* Ensures image stays within bounds */
-  position: relative; /* Needed for absolute positioning of time */
-  background-color: #eee; /* Placeholder bg */
+  overflow: hidden;
+  position: relative;
+  background-color: #333; /* Fallback background for image area */
 }
 
 .post-image-container img {
-  display: block; /* Remove extra space below image */
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.3s ease; /* Add zoom effect on hover */
+  transition: transform 0.35s ease, filter 0.35s ease;
+  filter: brightness(0.9);
 }
 
 .no-image-placeholder {
@@ -49,342 +35,430 @@
   justify-content: center;
   width: 100%;
   height: 100%;
-  background-color: #e0e0e0;
+  background-color: #303030;
   color: #888;
   font-size: 0.9rem;
   text-align: center;
 }
 
-/* Time Display Styling */
+/* For the top 2 (Trending) time, over the image */
 .post-time {
   position: absolute;
-  bottom: 8px; /* Adjust as needed */
-  left: 8px;   /* Adjust as needed */
-  background-color: rgba(0, 0, 0, 0.6);
+  bottom: 8px;
+  left: 10px;
+  background-color: rgba(0, 0, 0, 0.7);
   color: #fff;
-  padding: 3px 6px;
-  font-size: 0.75rem; /* Smaller font size */
+  padding: 2px 6px;
+  font-size: 0.7rem;
   border-radius: 3px;
-  z-index: 2; /* Above image, below title overlay if applicable */
+  z-index: 4;
   line-height: 1.2;
+  font-weight: 500;
 }
 
-
-/* --- Trending Posts --- */
+/* --- Trending Posts (Top 2) --- */
 .trending-container {
-  margin-bottom: 40px;
+  margin-top: 120px; /* Gap from the header */
+  margin-bottom: 30px;
+}
+
+.trending-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 20px;
 }
 
 .trending-title {
-  font-size: 1.8rem; /* Adjusted size */
-  margin-bottom: 20px;
-  font-weight: 700;
-  color: #222;
-  border-left: 4px solid #e63946; /* Example accent */
-  padding-left: 0px;
+  position: relative;
+  font-size: 2.0rem;
+  margin: 0;
+  padding-left: 15px; /* Space to accommodate the red bar */
+  font-weight: 600;
+  color: #ffffff;
+}
+
+/* Red bar prefix using a pseudo-element */
+.trending-title::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 4px;
+  height: 100%;
+  background-color: red;
+}
+
+.trending-title-line {
+  background-color: #e0e0e0;
+  height: 1px;
+  width: 100%;
+  margin-top: 10px;     /* Gap between title and line */
+  margin-bottom: 20px; /* Gap between line and grid */
 }
 
 .trending-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* Default 2 columns */
-  gap: 20px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 25px;
+  margin-top: 20px;
+}
+
+.trending-grid-item-wrapper {
+  position: relative;
 }
 
 .trending-item {
-  position: relative; /* Keep for overlay */
-  border-radius: 8px;
+  position: relative;
+  border-radius: 6px;
   overflow: hidden;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease;
   cursor: pointer;
-  text-decoration: none; /* Remove underline from link */
-  color: inherit; /* Inherit text color */
-  display: flex; /* Use flex to control children */
-  flex-direction: column; /* Stack image and overlay */
-  height: 400px; /* Maintain height */
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  height: 320px;
+  background-color: #2a2a2a; /* Keep background for trending items */
 }
 
 .trending-item .post-image-container {
- flex-grow: 1; /* Allow image container to fill height */
- height: 100%; /* Take full height */
+  height: 100%;
+  width: 100%;
 }
 
-/* Title overlay specific to trending */
 .title-overlay {
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0) 100%);
-  padding: 40px 20px 20px 20px; /* More padding at bottom for time */
-  transition: background 0.3s ease;
-  z-index: 3; /* Above time */
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 80%);
+  padding: 20px 15px 40px 15px;
+  transition: background 0.3s ease, padding 0.3s ease;
+  z-index: 3;
+  box-sizing: border-box;
 }
 
-.trending-item h3 { /* Style h3 inside overlay */
+.trending-item h3 {
   color: #fff;
   margin: 0;
-  font-size: 1.5rem;
-  line-height: 1.3;
+  font-size: 1.3rem;
+  line-height: 1.35;
+  font-weight: 600;
   transition: transform 0.3s ease;
+  text-align: left;
 }
 
-/* Hover effects for trending posts */
 .trending-item:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  transform: translateY(-6px);
 }
 
 .trending-item:hover img {
-  transform: scale(1.05); /* Slight zoom on image */
+  transform: scale(1.07);
+  filter: brightness(1.0);
 }
 
 .trending-item:hover .title-overlay {
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.1) 100%);
+  background: transparent;
+  padding-bottom: 20px;
 }
 
+.trending-item:hover h3 {
+  transform: translateY(-15px);
+}
 
-/* --- Carousel Posts --- */
+/* --- Carousel Posts (Below top 2) --- */
 .carousel-section-container {
-    margin-top: 40px;
-    margin-bottom: 40px;
+  margin-top: 30px;
+  margin-bottom: 30px;
 }
 
-.carousel-title {
-    /* Style similarly to trending-title or customize */
-    font-size: 1.8rem;
-    margin-bottom: 20px;
-    font-weight: 700;
-    color: #222;
-    border-left: 4px solid #1a73e8; /* Different accent color */
-    padding-left: 10px;
-}
-
-/* Viewport: This holds the carousel and clips it */
 .carousel-viewport {
-  position: relative; /* For positioning nav buttons */
-  overflow: hidden; /* Crucial: Hides posts outside the view */
+  position: relative;
+  overflow: hidden;
   width: 100%;
+  padding: 0 10px;
+  box-sizing: border-box;
 }
 
-/* Carousel: The sliding container */
 .posts-carousel {
   display: grid;
-   /* Use auto-flow and auto-columns for flexibility */
   grid-auto-flow: column;
-   /* Default: 4 posts visible (100% / 4 = 25%) */
-  grid-auto-columns: calc(25% - 15px); /* Adjust 15px based on the gap */
+  grid-auto-columns: calc(25% - 15px);
   gap: 20px;
-  transition: transform 0.5s ease-in-out; /* Smoother transition */
-  /* width is implicitly set by the number of columns * column width */
-  /* Remove inline style width calculation from JS */
-   padding: 5px 0; /* Add padding to prevent shadow clipping */
+  transition: transform 0.5s ease-in-out;
+  padding: 5px 0;
+  position: relative;
+  z-index: 1;
 }
 
-
+/* === MODIFIED SECTION START === */
 .carousel-post {
-  /* No position relative needed unless for overlays */
-  border-radius: 6px;
-  overflow: hidden; /* Clip image within rounded corners */
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 4px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
   cursor: pointer;
-  text-decoration: none; /* Remove underline from link */
-  background-color: #fff; /* Add background for title area */
+  text-decoration: none;
   display: flex;
   flex-direction: column;
+  background-color: transparent; /* REMOVED dark card background */
 }
 
+/* The image portion for carousel posts */
 .carousel-post .post-image-container {
-  height: 180px; /* Adjust height as needed */
+  height: 150px;
   width: 100%;
+  border-radius: 4px 4px 0 0;
+  overflow: hidden;
+  position: relative;
+  background-color: #333; /* Added fallback background */
 }
 
+/* Ensure image styles are consistent and fill the container */
+.carousel-post .post-image-container img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.35s ease, filter 0.35s ease;
+  filter: brightness(0.9);
+  border-radius: 4px 4px 0 0;
+}
 
-/* Title below image for carousel */
-.carousel-post .post-title-below {
-  color: #333; /* Darker text color */
-  margin: 0; /* Remove default margin */
-  padding: 12px 15px; /* Add padding around the title */
-  font-size: 1rem;   /* Adjust font size */
+/* Title below the image */
+.post-title-below {
+  color: #cccccc;
+  margin: 10px 10px 0 10px; /* top margin, L/R margin, no bottom margin */
+  font-size: 0.9rem;
   line-height: 1.4;
   font-weight: 600;
-  /* Ensure title doesn't overflow - optional */
-  /* text-overflow: ellipsis; */
-  /* overflow: hidden; */
-  /* white-space: nowrap; */ /* Use if you want single line */
-   flex-grow: 1; /* Allows title area to fill remaining space if needed */
+  text-align: left;
 }
+
+/* Time label below the title */
+.post-time-below {
+  display: block;          /* Puts it on its own line */
+  text-align: left;          /* Explicitly align text to the left */
+  margin: 5px 0 10px 10px; /* 5px top, 0 right, 10px bottom, 10px left */
+  font-size: 0.8rem;
+  color: #bbb;
+}
+/* === MODIFIED SECTION END === */
+
 
 /* Hover effects for carousel posts */
 .carousel-post:hover {
   transform: translateY(-4px);
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
 }
 
 .carousel-post:hover img {
-  transform: scale(1.05); /* Slight zoom on image */
+  transform: scale(1.05);
+  filter: brightness(1.05);
 }
 
+/* Carousel Side Shading */
+.carousel-shade {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 2;
+  pointer-events: none;
+}
 
-/* Carousel navigation buttons */
+.carousel-shade-left {
+  left: 0;
+  width: 70px;
+  background: linear-gradient(to right, #1a1a1a 0%, transparent 100%);
+}
+
+.carousel-shade-right {
+  right: 0;
+  width: 70px;
+  background: linear-gradient(to left, #1a1a1a 0%, transparent 100%);
+}
+
+/* Carousel Navigation Buttons */
 .carousel-nav {
   position: absolute;
   top: 50%;
-  /* Adjust vertical alignment based on actual carousel item height */
-  transform: translateY(-70%); /* May need fine-tuning */
-  width: 40px;
-  height: 40px;
-  background-color: rgba(255, 255, 255, 0.9);
+  transform: translateY(-50%);
+  width: 38px;
+  height: 38px;
+  background-color: rgba(40, 40, 40, 0.8);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  z-index: 10; /* Above carousel items */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
   transition: background-color 0.3s ease, opacity 0.3s ease;
-  border: none; /* Remove default button border */
+  border: none;
   padding: 0;
-  opacity: 0.8;
-}
-
-.carousel-nav:hover {
-  background-color: #fff;
-  opacity: 1;
+  opacity: 0.7;
 }
 
 .carousel-nav-prev {
-  left: -15px; /* Position slightly outside the viewport */
+  left: 15px;
 }
 
 .carousel-nav-next {
-  right: -15px; /* Position slightly outside the viewport */
+  right: 15px;
 }
 
-/* Arrow Styling */
+.carousel-nav:hover {
+  background-color: rgba(50, 50, 50, 0.9);
+  opacity: 1;
+}
+
 .carousel-nav:before {
   content: '';
   display: block;
-  width: 10px;
-  height: 10px;
+  width: 8px;
+  height: 8px;
   border-style: solid;
-  border-color: #333; /* Arrow color */
+  border-color: #cccccc;
   border-width: 2px 2px 0 0;
 }
 
 .carousel-nav-prev:before {
   transform: rotate(-135deg);
-  margin-left: 5px; /* Adjust arrow position */
+  margin-left: 3px;
 }
 
 .carousel-nav-next:before {
   transform: rotate(45deg);
-  margin-right: 5px; /* Adjust arrow position */
+  margin-right: 3px;
 }
 
 /* --- Responsive Adjustments --- */
-
-/* Tablets */
 @media (max-width: 992px) {
-
   .trending-item {
-    height: 350px;
+    height: 280px;
+  }
+  .trending-item h3 {
+    font-size: 1.2rem;
+  }
+  .title-overlay {
+    padding: 15px 15px 35px 15px;
   }
 
   .posts-carousel {
-     /* Show 3 posts */
-     grid-auto-columns: calc(33.333% - 14px); /* 20px gap * 2 / 3 */
-     gap: 20px; /* Keep gap consistent if possible */
+    grid-auto-columns: calc(33.333% - 14px); /* 3 items */
+    gap: 20px;
   }
-
   .carousel-post .post-image-container {
-     height: 160px;
-   }
+    height: 130px;
+  }
+  .post-title-below {
+    font-size: 0.85rem;
+  }
+  .post-time-below {
+    font-size: 0.75rem;
+  }
 }
 
-/* Mobile Landscape & Large Phones */
 @media (max-width: 768px) {
   .trending-grid {
-    grid-template-columns: 1fr; /* Stack trending posts */
+    grid-template-columns: 1fr; /* Stack trending items */
   }
-
   .trending-item {
-    height: 300px;
+    height: 260px;
   }
-   .trending-item h3 {
-       font-size: 1.3rem;
-   }
+  .trending-item h3 {
+    font-size: 1.1rem;
+  }
 
   .posts-carousel {
-     /* Show 2 posts */
-     grid-auto-columns: calc(50% - 10px); /* 20px gap / 2 */
-     gap: 20px;
+    grid-auto-columns: calc(50% - 10px); /* 2 items */
+    gap: 20px;
+  }
+  .carousel-post .post-image-container {
+    height: 120px;
+  }
+  .post-title-below {
+    font-size: 0.8rem;
+    margin: 8px 8px 0 8px;
+  }
+  .post-time-below {
+    /* Adjust left margin for smaller screens if title margin changes */
+    margin: 4px 0 8px 8px;
+    font-size: 0.7rem;
   }
 
-  .carousel-post .post-image-container {
-     height: 140px;
-   }
-    .carousel-post .post-title-below {
-       font-size: 0.9rem;
-       padding: 10px 12px;
-   }
-   .carousel-nav { /* Move nav buttons inside slightly */
-       width: 35px;
-       height: 35px;
-   }
-    .carousel-nav-prev { left: 5px; }
-    .carousel-nav-next { right: 5px; }
+  .carousel-nav {
+    width: 32px;
+    height: 32px;
+  }
+  .carousel-shade-left,
+  .carousel-shade-right {
+    width: 40px;
+  }
+  .carousel-nav-prev {
+    left: 5px;
+  }
+  .carousel-nav-next {
+    right: 5px;
+  }
 }
 
-/* Mobile Portrait */
 @media (max-width: 576px) {
-  .welcome-section h1 { font-size: 2rem; }
-  .welcome-section p { font-size: 1rem; }
-
-  .trending-item {
-    height: 250px;
+  .home-container {
+    padding: 10px;
   }
-   .trending-item h3 {
-       font-size: 1.1rem;
-   }
-    .title-overlay {
-        padding: 30px 15px 15px 15px;
-    }
-
+  .trending-item {
+    height: 220px;
+  }
+  .trending-item h3 {
+    font-size: 1rem;
+  }
+  .title-overlay {
+    padding: 10px 10px 30px 10px;
+  }
 
   .posts-carousel {
-     /* Show 1.5 posts - gives a peek effect */
-     grid-auto-columns: calc(66.66% - 10px);
-     gap: 15px;
-     /* Or show 1 post: grid-auto-columns: calc(100% - 0px); gap: 0; */
+    grid-auto-columns: calc(60% - 8px); /* Slightly more than half width */
+    gap: 15px;
+  }
+  .carousel-post .post-image-container {
+    height: 110px;
+  }
+  .post-title-below {
+    font-size: 0.75rem;
+    margin: 8px 8px 0 8px;
+  }
+  .post-time-below {
+    /* Adjust left margin for smaller screens if title margin changes */
+    margin: 4px 0 8px 8px;
+    font-size: 0.65rem;
   }
 
-  .carousel-post .post-image-container {
-     height: 150px; /* Increase height slightly for single/peek view */
-   }
-   .carousel-post .post-title-below {
-       font-size: 0.9rem;
-   }
-
-   .post-time {
-       font-size: 0.7rem;
-       padding: 2px 4px;
-   }
+  .carousel-shade {
+    display: none; /* Hide shading on very small screens */
+  }
+  .carousel-nav {
+    display: none; /* Hide arrows on very small screens if desired */
+  }
 }
 
 /* --- Loading/Error --- */
-.loading-message, .error-message {
+.loading-message,
+.error-message {
   text-align: center;
   padding: 40px 20px;
-  font-size: 1.2rem;
-  background-color: #f0f0f0;
+  font-size: 1.1rem;
+  background-color: #2a2a2a;
   border-radius: 8px;
   margin: 40px 0;
-  color: #555;
+  color: #aaaaaa;
 }
 
 .error-message {
-  color: #e63946;
-  background-color: #fde8e8;
+  color: #ff8a8a;
+  background-color: #4e3434;
+}
+
+/* --- Tech Section Styling --- */
+.tech-container {
+  margin-top: 80px; /* Adding top padding */
 }
