@@ -1,0 +1,167 @@
+:root {
+  --header-height: 100px;
+  --content-width: 750px;
+  --left-offset: 250px;
+}
+
+/* HERO SECTION */
+.post-hero {
+  position: relative;
+  z-index: 1; /* ensure hero background and shading are below the image */
+  position: relative;
+  background: #000;
+  color: #fff;
+  padding-top: calc(var(--header-height) + 2.5rem);
+  padding-bottom: 6rem;
+}
+
+/* intersection shading for 3D effect with more controlled black fade */
+/* intersection shading for 3D effect, white fade up to half title area */
+.post-hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50%; /* cover half of hero section */
+  /* fade white from moderate intensity to transparent */
+  background: linear-gradient(
+    to top,
+    rgba(255,255,255,0.6) 0%,   /* 60% opacity at bottom */
+    rgba(255,255,255,0.3) 30%,  /* 30% at 30% up */
+    rgba(255,255,255,0) 100%    /* transparent at top of fade */
+  );
+  pointer-events: none;
+  z-index: 2;
+}
+
+.hero-inner {
+  max-width: var(--content-width);
+  margin: 0;
+  margin-left: var(--left-offset);
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.back-link {
+  position: absolute;
+  top: calc(var(--header-height) + 2rem);
+  left: 10px;
+  color: #fff;
+  opacity: 0.75;
+  text-decoration: none;
+  font-size: 0.95rem;
+  z-index: 2;
+}
+.back-link:hover { opacity: 1; }
+
+.post-title {
+  font-size: 2.8rem;
+  margin: 0 0 1rem;
+  text-align: left;
+}
+.post-meta {
+  margin-bottom: 0.5rem;
+  text-align: left;
+}
+.post-date {
+  color: #ffbcbc;
+  font-size: 1rem;
+  font-weight: 500;
+  text-align: left;
+}
+
+/* BODY SECTION */
+.post-body {
+  background: #fff;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  box-shadow: 0 -4px 16px rgba(0,0,0,0.08);
+  margin-top: -1.5rem;
+}
+
+.content-container {
+  position: relative;
+  max-width: var(--content-width);
+  margin: 0;
+  margin-left: var(--left-offset);
+  padding: 2.5rem 2rem 4rem 0;
+  text-align: left;
+}
+
+.image-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 2; /* Maintain a 3:2 ratio and show full image */
+  overflow: hidden;
+  margin-bottom: 2rem;
+}
+
+.post-image {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  /* overlap 25% of image into hero section */
+  margin-top: -100px; /* 25% of 400px */
+  border-radius: 0;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+  margin-bottom: 2rem;
+  position: relative;
+  z-index: 3; /* bring image above shading */
+}
+
+.image-wrapper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 25%;
+  background: linear-gradient(rgba(255,255,255,0.8), rgba(255,255,255,0));
+  pointer-events: none;
+}
+
+.post-content {
+  color: #222;
+  line-height: 1.7;
+  font-size: 1.1rem;
+  position: relative;
+  overflow: hidden;
+  text-align: left;
+}
+
+.shade {
+  position: absolute;
+  bottom: 3rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 1.5em;
+  background: rgba(255,255,255,0.8);
+  pointer-events: none;
+}
+
+.read-more-btn {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #e74c3c;
+  color: #fff;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+.read-more-btn:hover {
+  transform: translateX(-50%) scale(1.05);
+}
+
+.loading-message,
+.error-message {
+  padding: 2rem;
+  text-align: center;
+  font-size: 1.2rem;
+}

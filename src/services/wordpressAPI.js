@@ -1,6 +1,4 @@
-// wordpressapi.js
-
-const API_URL = 'http://bharathinsight.local/wp-json/wp/v2';
+const API_URL = process.env.REACT_APP_WORDPRESS_API_URL || 'http://bharathinsight.local/wp-json/wp/v2';
 
 /**
  * Fetches posts from the WordPress API
@@ -10,7 +8,7 @@ export async function getPosts(params = {}) {
     const queryString = Object.keys(params)
       .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`)
       .join('&');
-    
+
     const url = `${API_URL}/posts${queryString ? `?${queryString}` : ''}`;
     const response = await fetch(url);
     if (!response.ok) {
@@ -41,7 +39,28 @@ export async function getCategoryBySlug(slug) {
   }
 }
 
+/**
+ * Fetches a single post by slug from the WordPress API
+ */
+export async function getPostBySlug(slug) {
+  try {
+    const response = await fetch(`${API_URL}/posts?slug=${encodeURIComponent(slug)}&_embed`);
+    if (!response.ok) {
+      throw new Error(`Failed to fetch post: ${response.status} ${response.statusText}`);
+    }
+    const data = await response.json();
+    if (data.length === 0) {
+      throw new Error('Post not found');
+    }
+    return data[0];
+  } catch (error) {
+    console.error(`Error fetching post with slug ${slug}:`, error);
+    throw error;
+  }
+}
+
 export default {
   getPosts,
-  getCategoryBySlug
+  getCategoryBySlug,
+  getPostBySlug
 };

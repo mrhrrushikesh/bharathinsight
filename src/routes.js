@@ -1,17 +1,19 @@
 import React from "react";
-import {  Routes, Route } from "react-router-dom"; // Removed BrowserRouter as Router import
+import { Routes, Route } from "react-router-dom";
 import Home from "../src/pages/Home";
 import About from "../src/pages/About";
 import Dashboard from './admin/components/Dashboard';
+import ArticlePage from './pages/ArticlePage';
 
 const AppRoutes = () => {
-  return (
-      <Routes> {/*  Using only <Routes> now */}
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/admin/Dashboard" element={<Dashboard />} />      
-      </Routes>
-  );
+  return (
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/about" element={<About />} />
+      <Route path="/admin/Dashboard" element={<Dashboard />} />
+      <Route path="/:category/:slug" element={<ArticlePage />} />
+    </Routes>
+  );
 };
 
 export default AppRoutes;
