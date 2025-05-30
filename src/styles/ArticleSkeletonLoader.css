@@ -341,6 +341,12 @@
 }
 
 @media (max-width: 576px) {
+    .article-skeleton-breadcrumb{
+        margin-left: 30px;
+    }
+    .article-skeleton-date{
+        margin-left: 12px;
+    }
     .article-skeleton-image {
         height: 200px;
     }
