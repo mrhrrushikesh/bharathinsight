@@ -3,69 +3,105 @@
 .footer {
     background-color: #000;
     color: #fff;
-    padding: 20px;
+    padding: 50px 20px 30px 20px;
     font-family: sans-serif;
     position: relative; /* For red-shade absolute positioning */
-
+    z-index: 1000; /* Elevate footer to be on top of other elements */
+    font-size: 1.1rem;
+    min-height: 320px;
+    display: flex;
+    flex-direction: column;
 }
 
 .footer-container {
-    max-width: 1200px; /* Adjust as needed */
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px; /* Add some padding on the sides for wider screens */
+    padding: 0 30px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
 }
 
 .footer-top {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start; /* Align items to the top */
-    margin-bottom: 20px; /* Space between top and bottom sections */
-    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    align-items: flex-start;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    gap: 30px;
 }
 
 .footer-logo {
-    flex: 1; /* Allow logo to take up available space */
-    min-width: 150px; /* Minimum width for logo area */
+    flex: 1.2; /* Allow logo to take up available space */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    min-width: 180px; /* Minimum width for logo area */
+    max-width: 300px;
 }
 
 .footer-logo img {
     height: auto;
-    width: 100%; /* Make logo responsive within its container */
-    max-width: 150px; /* Maximum logo width */
+    width: 100%;
+    max-width: 220px;
+    margin-left: 0;
 }
 
 .footer-links-social {
-    flex: 1; /* Allow links and social icons to take up space */
+    flex: 3; /* Allow links and social icons to take up more space */
     display: flex;
-    justify-content: flex-end; /* Push links and icons to the right */
+    justify-content: space-between; /* Distribute sections evenly */
     align-items: flex-start; /* Align items to the top */
-    gap: 20px; /* Space between links and social icons */
-    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    gap: 40px; /* Space between sections */
+}
+
+/* Footer links section - Desktop */
+.footer-links-section {
+    flex: 1.5;
+    min-width: 200px;
+    text-align: center;
 }
 
 .footer-links {
-    display: flex;
-    gap: 15px; /* Space between links */
-    flex-wrap: wrap; /* Wrap links on smaller screens */
-    justify-content: flex-end; /* Align links to the right */
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px 30px;
+    justify-content: center;
+    text-align: center;
+}
+
+.footer-newsletter {
+    flex: 1.5;
+    min-width: 250px;
+    text-align: center;
+}
+
+.footer-connect {
+    flex: 1;
+    min-width: 180px;
+    text-align: center;
 }
 
 .footer-links a {
     color: #fff;
     text-decoration: none;
-    font-size: 0.9rem;
-    white-space: nowrap; /* Prevent text from wrapping to multiple lines */
+    font-size: 1rem;
+    display: block;
+    padding: 5px 0;
+    transition: color 0.2s ease;
 }
 
 .footer-links a:hover {
     text-decoration: underline;
 }
 
-
 .footer-social-icons {
     display: flex;
-    gap: 10px; /* Space between social icons */
-    justify-content: flex-end; /* Align icons to the right */
+    gap: 15px;
+    margin-bottom: 15px;
+    justify-content: center;
 }
 
 .footer-social-icons img {
@@ -74,14 +110,14 @@
     display: block; /* Prevent extra space below inline images */
 }
 
-
 .footer-bottom {
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap; /* Allow wrapping on smaller screens */
-    padding-top: 10px;
+    padding-top: 20px;
     border-top: 1px solid #333; /* Light border to separate bottom section */
+    margin-top: auto;
 }
 
 .footer-copyright {
@@ -93,22 +129,116 @@
 
 .footer-bottom-links {
     display: flex;
-    gap: 15px;
-    flex-wrap: wrap; /* Allow wrapping on smaller screens */
-    justify-content: flex-end; /* Align bottom links to the right */
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
 }
 
 .footer-bottom-links a {
     color: #ccc;
     text-decoration: none;
-    font-size: 0.8rem;
-    white-space: nowrap; /* Prevent text from wrapping */
+    font-size: 0.9rem;
+    white-space: nowrap;
+    transition: color 0.2s ease;
 }
 
 .footer-bottom-links a:hover {
     text-decoration: underline;
 }
 
+/* New footer component styles */
+.footer-tagline {
+    font-size: 0.9rem;
+    color: #ccc;
+    margin-top: 8px;
+    font-style: italic;
+    margin-bottom: 5px;
+}
+
+.footer-section-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+    position: relative;
+    padding-bottom: 10px;
+    color: #ffffff;
+    text-align: center;
+}
+
+.footer-section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 2px;
+    background-color: #e74c3c;
+}
+
+.footer-links-section {
+    margin-bottom: 20px;
+}
+
+.footer-newsletter {
+    max-width: 280px;
+}
+
+.newsletter-desc {
+    font-size: 0.9rem;
+    color: #ccc;
+    margin-bottom: 12px;
+    text-align: center;
+}
+
+.newsletter-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 90%;
+    margin: 0 auto;
+}
+
+.newsletter-form input {
+    padding: 10px;
+    border: 1px solid #333;
+    background-color: #222;
+    color: #fff;
+    border-radius: 4px;
+    font-size: 0.9rem;
+}
+
+.newsletter-form button {
+    padding: 10px;
+    background-color: #e74c3c;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.2s ease;
+    max-width: 50%;
+    margin: 0 auto;
+}
+
+.newsletter-form button:hover {
+    background-color: #c0392b;
+}
+
+.footer-connect {
+    max-width: 220px;
+}
+
+.footer-contact-info {
+    margin-top: 15px;
+    font-size: 0.9rem;
+    color: #ccc;
+    text-align: center;
+}
+
+.footer-contact-info p {
+    margin: 5px 0;
+}
 
 /* Red Shade at the bottom */
 .red-shade {
@@ -120,46 +250,172 @@
     background: linear-gradient(to right, rgba(255, 0, 0, 0.8), rgba(255, 0, 0, 0.2)); /* Red gradient */
 }
 
-
 /* Responsive adjustments for smaller screens */
 @media (max-width: 768px) {
+    .footer {
+        height: auto;
+        padding: 35px 0 25px 0;
+    }
+    
     .footer-container {
-        padding: 0 10px; /* Reduce side padding on smaller screens */
+        padding: 0 20px;
+        height: auto;
     }
 
     .footer-top {
-        flex-direction: column; /* Stack logo and links/social on smaller screens */
-        align-items: center; /* Center items on smaller screens */
-        text-align: center; /* Center text within items */
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+        margin-bottom: 35px;
+        padding-bottom: 0;
     }
 
     .footer-logo {
-        margin-bottom: 15px; /* Add space below logo when stacked */
-        text-align: center; /* Center logo on smaller screens */
+        margin-bottom: 0;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .footer-logo img {
+        max-width: 180px;
+    }
+    
+    .footer-tagline {
+        margin-top: 8px;
+        font-size: 0.85rem;
     }
 
     .footer-links-social {
-        justify-content: center; /* Center links and social icons on smaller screens */
-        gap: 20px 30px; /* Adjust gap for stacked layout */
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+    }
+    
+    .footer-links-section,
+    .footer-newsletter,
+    .footer-connect {
+        width: 100%;
+        max-width: 100%;
+        text-align: center;
+    }
+    
+    .footer-section-title {
+        text-align: center;
+        margin-bottom: 18px;
+    }
+    
+    .footer-section-title::after {
+        left: 50%;
+        transform: translateX(-50%);
+        width: 50px;
     }
 
     .footer-links {
-        justify-content: center; /* Center links on smaller screens */
-        gap: 10px; /* Reduce link gap on smaller screens */
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        justify-content: center;
+        text-align: center;
+    }
+    
+    .footer-links a {
+        font-size: 0.95rem;
+        display: block;
+        padding: 8px 0;
+        border-radius: 4px;
+        transition: background-color 0.2s ease;
+    }
+    
+    .footer-links a:hover {
+        background-color: rgba(255, 255, 255, 0.05);
+    }
+
+    .newsletter-form {
+        max-width: 280px;
+        margin: 0 auto;
+    }
+    
+    .newsletter-desc {
+        margin-bottom: 15px;
+    }
+    
+    .newsletter-form input {
+        width: 100%;
+        padding: 12px;
+        border-radius: 4px;
+    }
+    
+    .newsletter-form button {
+        width: 100%;
+        padding: 12px;
+        margin-top: 5px;
+        font-size: 0.95rem;
+    }
+
+    .footer-social-icons {
+        width: 100%;
+        justify-content: center;
+        gap: 20px;
+        margin-top: 5px;
+    }
+    
+    .footer-social-icons a {
+        margin: 0 10px;
+    }
+    
+    .footer-contact-info {
+        text-align: center;
+        margin-top: 15px;
     }
 
     .footer-bottom {
-        flex-direction: column; /* Stack copyright and bottom links */
-        text-align: center; /* Center text in bottom section */
-    }
-
-    .footer-copyright {
-        text-align: center; /* Center copyright text on smaller screens */
-        margin-bottom: 10px; /* Add space below copyright when stacked */
+        flex-direction: column;
+        gap: 18px;
+        border-top: 1px solid #333;
+        padding-top: 20px;
+        margin-top: 15px;
+        text-align: center;
     }
 
     .footer-bottom-links {
-        justify-content: center; /* Center bottom links on smaller screens */
-        gap: 10px; /* Reduce bottom links gap on smaller screens */
+        order: 1;
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 15px;
+        margin-bottom: 5px;
+    }
+    
+    .footer-bottom-links a {
+        font-size: 0.85rem;
+        opacity: 0.8;
+        padding: 5px 8px;
+        transition: opacity 0.2s ease;
+    }
+    
+    .footer-bottom-links a:hover {
+        opacity: 1;
+    }
+
+    .footer-copyright {
+        order: 2;
+        width: 100%;
+        font-size: 0.8rem;
+        opacity: 0.7;
+        text-align: center;
+        margin-top: 0;
+        padding-top: 0;
+        border-top: none;
+    }
+    
+    /* Red shade adjustment */
+    .red-shade {
+        height: 4px;
     }
 }

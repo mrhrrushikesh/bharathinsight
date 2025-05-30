@@ -1,0 +1,111 @@
+/* Skeleton Loader Styles */
+.skeleton-container {
+    width: 100%;
+  }
+  
+  .skeleton-header {
+    margin-bottom: 20px;
+  }
+  
+  .skeleton-title {
+    height: 32px;
+    width: 200px;
+    background-color: #626262;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .skeleton-line {
+    height: 3px;
+    width: 100%;
+    background-color: #626262;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  /* Grid layout that matches the actual content */
+  .skeleton-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-bottom: 30px;
+  }
+  
+  .skeleton-grid-item {
+    width: 100%;
+    height: 280px;
+    background-color: #626262;
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden; /* Important: Contains the shimmer effect inside the item */
+  }
+  
+  /* Carousel layout for the smaller items */
+  .skeleton-carousel {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    width: 100%;
+  }
+  
+  .skeleton-carousel-item {
+    width: 100%;
+    height: 220px;
+    background-color: #626262;
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden; /* Important: Contains the shimmer effect inside the item */
+  }
+  
+  /* Shimmer animation effect */
+  .skeleton-grid-item::after,
+  .skeleton-carousel-item::after,
+  .skeleton-title::after,
+  .skeleton-line::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: -150%; /* Start from outside the right edge */
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.4) 80%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    animation: shimmer 2s infinite linear;
+  }
+  
+  @keyframes shimmer {
+    0% {
+      transform: translateX(-150%);
+    }
+    100% {
+      transform: translateX(150%);
+    }
+  }
+  
+  /* Only show skeleton loader on larger screens */
+  @media (max-width: 768px) {
+    .skeleton-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .skeleton-carousel {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .skeleton-grid-item, .skeleton-carousel-item {
+      height: 180px;
+    }
+    
+    .skeleton-carousel {
+      grid-template-columns: 1fr;
+    }
+  }
+  

@@ -1,0 +1,128 @@
+/* Trending Skeleton Loader Styles */
+.trending-skeleton-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .trending-skeleton-item {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    padding: 16px 0;
+    border-bottom: 1px solid #e0e0e0;
+  }
+  
+  .trending-skeleton-image {
+    min-width: 120px;
+    height: 120px;
+    background-color: #d0d0d0;
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .trending-skeleton-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .trending-skeleton-title {
+    height: 24px;
+    width: 85%;
+    background-color: #d0d0d0;
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .trending-skeleton-excerpt {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .trending-skeleton-line {
+    height: 16px;
+    width: 100%;
+    background-color: #d0d0d0;
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .trending-skeleton-line.short {
+    width: 60%;
+  }
+  
+  .trending-skeleton-date {
+    height: 14px;
+    width: 80px;
+    background-color: #d0d0d0;
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+    margin-top: auto;
+  }
+  
+  /* Shimmer animation effect - using a more noticeable approach */
+  .trending-skeleton-image,
+  .trending-skeleton-title,
+  .trending-skeleton-line,
+  .trending-skeleton-date {
+    position: relative;
+    background-color: #8b8989; /* Dimmer base color */
+    overflow: hidden;
+  }
+  
+  .trending-skeleton-image::after,
+  .trending-skeleton-title::after,
+  .trending-skeleton-line::after,
+  .trending-skeleton-date::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(to right, 
+      transparent 0%,
+      rgba(255, 255, 255, 0.9) 50%,
+      transparent 100%
+    );
+    animation: trendingShimmer 1.68s infinite;
+  }
+  
+  @keyframes trendingShimmer {
+    0% {
+      left: -100%;
+    }
+    100% {
+      left: 200%;
+    }
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .trending-skeleton-image {
+      min-width: 100px;
+      height: 100px;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .trending-skeleton-item {
+      flex-direction: column;
+      gap: 12px;
+    }
+    
+    .trending-skeleton-image {
+      width: 100%;
+      height: 180px;
+      min-width: unset;
+    }
+  }
+  

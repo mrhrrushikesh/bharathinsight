@@ -1,0 +1,223 @@
+/* Base layout */
+.search-container {
+    min-height: 100vh;
+    background-color: #1e1e1e;
+    color: white;
+    font-family: Arial, sans-serif;
+    padding-top: 10%;
+  }
+  
+  .content-wrapper {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Topics sidebar now at the top */
+  .topics-sidebar {
+    margin-bottom: 20px;
+    width: 100%;
+  }
+  
+  .topics-sidebar h2 {
+    font-size: 1.2rem;
+    margin-bottom: 16px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+  
+  /* Main search results area */
+  .search-results-wrapper {
+    width: 100%;
+  }
+  
+  /* Header with result count and sort options */
+  .results-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+  
+  .result-count {
+    font-size: 0.95rem;
+    margin: 0;
+  }
+  
+  .sort-options {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .sort-options label {
+    font-size: 0.9rem;
+  }
+  
+  .sort-options select {
+    background-color: transparent;
+    border: 1px solid #444;
+    color: white;
+    padding: 4px 10px;
+    border-radius: 3px;
+    font-size: 0.9rem;
+  }
+  
+  /* Divider */
+  hr {
+    border: none;
+    border-top: 1px solid #333;
+    margin: 24px 0;
+  }
+  
+  /* Search results list */
+  .search-results-list {
+    display: flex;
+    flex-direction: column;
+    gap: 30px; /* Space between each result item */
+  }
+  
+  /* Individual search result item */
+  .search-result-item {
+    border-bottom: 1px solid #222;
+    padding-bottom: 30px;
+  }
+  
+  .search-result-item:last-child {
+    border-bottom: none;
+  }
+  
+  .result-link {
+    display: flex;
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  /* Image container */
+  .result-image {
+    aspect-ratio: 16/9; /* Maintain aspect ratio */
+    flex: 0 0 auto; /* Prevent flex-grow and flex-shrink */
+    width: 300px;
+    height: 176.7px;
+    overflow: hidden;
+    border-radius: 0px;
+    margin-right: 10px; /* This creates the 10px spacing between image and content */
+  }
+  
+  .result-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  
+  /* Text content container */
+  .result-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    text-align: left; /* Align content to the left */
+    padding-left: 10px;
+  }
+  
+  .result-title {
+    margin: 0;
+    font-size: 1.05rem;
+    font-weight: 600;
+    line-height: 1.3;
+    color: #ffffff;
+  }
+  
+  .result-excerpt {
+    font-size: 0.9rem;
+    color: #bbbbbb;
+    line-height: 1.5;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .result-excerpt p {
+    margin: 0;
+  }
+  
+  .result-date {
+    font-size: 0.75rem;
+    color: #777777;
+    display: block;
+    margin-top: 2px;
+  }
+  
+  /* Error and loading states */
+  .error-message {
+    color: #ff6b6b;
+    font-size: 0.9rem;
+    margin: 20px 0;
+  }
+  
+  /* Responsive styles */
+  @media (max-width: 768px) {
+    .content-wrapper {
+      padding: 0 20px;
+    }
+  
+    .result-link {
+      flex-direction: column;
+    }
+  
+    .result-image {
+      width: 100%;
+      aspect-ratio: 16/9;
+      margin-right: 0;
+      margin-bottom: 12px;
+      height: auto; /* Remove fixed height */
+      background: #222;
+      overflow: hidden;
+      position: relative;
+    }
+  
+    .result-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  
+    /* Fallback for browsers that do not support aspect-ratio */
+    @supports not (aspect-ratio: 16/9) {
+      .result-image {
+        width: 100%;
+        padding-bottom: 56.25%; /* 16:9 ratio */
+        height: 0;
+        position: relative;
+      }
+      .result-image img {
+        position: absolute;
+        top: 0; left: 0; width: 100%; height: 100%;
+      }
+    }
+  
+    .search-container {
+      padding-top: 20%;
+    }
+  
+    .result-content {
+      padding-left: 0px;
+    }
+  }
+  
+  /* Medium screens */
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .content-wrapper {
+      padding: 0 20px;
+    }
+  }

@@ -1,0 +1,72 @@
+.terms-container {
+    max-width: 800px;
+    margin: 0 auto;
+    color: black;
+    text-align: left;
+  }
+  
+  .terms-header {
+    padding-top: 100px;
+    padding-bottom: 20px;
+  }
+  
+  .terms-header h1 {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: rgb(255, 255, 255);
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .terms-header p {
+    font-size: 16px;
+    margin-bottom: 20px;
+    color: rgb(255, 255, 255);
+  }
+  
+  .terms-content {
+    background-color: white;
+    padding: 30px 20px 40px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: left;
+  }
+  
+  .terms-content h2 {
+    font-size: 22px;
+    font-weight: bold;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    color: #333;
+    text-align: left;
+  }
+  
+  .terms-content p {
+    font-size: 16px;
+    line-height: 1.7;
+    margin-bottom: 15px;
+    color: #444;
+    text-align: left;
+  }
+  
+  .terms-content ul, .terms-content ol {
+    margin-bottom: 20px;
+    padding-left: 25px;
+    text-align: left;
+  }
+  
+  .terms-content li {
+    margin-bottom: 8px;
+    line-height: 1.6;
+    text-align: left;
+  }
+  
+  .terms-content a {
+    color: #0066cc;
+    text-decoration: none;
+  }
+  
+  .terms-content a:hover {
+    text-decoration: underline;
+  }

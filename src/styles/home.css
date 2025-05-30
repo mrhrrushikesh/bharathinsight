@@ -25,8 +25,8 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.35s ease, filter 0.35s ease;
-  filter: brightness(0.9);
+  transition: filter 0.35s ease;
+  filter: brightness(1); /* Slightly darker by default, but brighter than before */
 }
 
 .no-image-placeholder {
@@ -67,6 +67,38 @@ body {
   flex-direction: column;
   align-items: flex-start;
   margin-bottom: 20px;
+  width: 100%;
+}
+
+/* Header title and View All link wrapper */
+.header-title-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+/* View All link styling */
+.view-all-link {
+  color: #f54242; /* Red color to match the accent color */
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  transition: color 0.2s ease;
+}
+
+.view-all-link:hover {
+  color: #ff6b6b;
+}
+
+/* Cross arrow styling */
+.cross-arrow {
+  font-size: 1.1rem;
+  margin-left: 4px;
+  line-height: 1;
+  display: inline-block;
 }
 
 .trending-title {
@@ -110,7 +142,7 @@ body {
 
 .trending-item {
   position: relative;
-  border-radius: 6px;
+  border-radius: 0px; /* Sharp corners */
   overflow: hidden;
   transition: transform 0.3s ease;
   cursor: pointer;
@@ -118,11 +150,15 @@ body {
   color: inherit;
   display: flex;
   flex-direction: column;
-  height: 320px;
+  height: 0;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio (9/16 = 0.5625) */
   background-color: #2a2a2a; /* Keep background for trending items */
 }
 
 .trending-item .post-image-container {
+  position: absolute;
+  top: 0;
+  left: 0;
   height: 100%;
   width: 100%;
 }
@@ -147,6 +183,8 @@ body {
   font-weight: 600;
   transition: transform 0.3s ease;
   text-align: left;
+  text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.8), 0px 0px 5px rgba(0, 0, 0, 0.5);
+  /* Added text shadow for better readability on all backgrounds */
 }
 
 .trending-item:hover {
@@ -154,12 +192,12 @@ body {
 }
 
 .trending-item:hover img {
-  transform: scale(1.07);
   filter: brightness(1.0);
 }
 
 .trending-item:hover .title-overlay {
-  background: transparent;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 100%);
+  /* Maintain a semi-transparent gradient even on hover */
   padding-bottom: 20px;
 }
 
@@ -194,7 +232,7 @@ body {
 
 /* === MODIFIED SECTION START === */
 .carousel-post {
-  border-radius: 4px;
+  border-radius: 0px; /* Sharp corners */
   overflow: hidden;
   transition: transform 0.3s ease;
   cursor: pointer;
@@ -208,7 +246,7 @@ body {
 .carousel-post .post-image-container {
   height: 150px;
   width: 100%;
-  border-radius: 4px 4px 0 0;
+  border-radius: 0px; /* Sharp corners */
   overflow: hidden;
   position: relative;
   background-color: #333; /* Added fallback background */
@@ -220,9 +258,9 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.35s ease, filter 0.35s ease;
-  filter: brightness(0.9);
-  border-radius: 4px 4px 0 0;
+  transition: filter 0.35s ease;
+  filter: brightness(0.9); /* Slightly darker by default, but brighter than before */
+  border-radius: 0px; /* Sharp corners */
 }
 
 /* Title below the image */
@@ -252,7 +290,6 @@ body {
 }
 
 .carousel-post:hover img {
-  transform: scale(1.05);
   filter: brightness(1.05);
 }
 
@@ -280,7 +317,7 @@ body {
 /* Carousel Navigation Buttons */
 .carousel-nav {
   position: absolute;
-  top: 50%;
+  top: 75px; /* Set to half the height of carousel items (150px / 2) */
   transform: translateY(-50%);
   width: 38px;
   height: 38px;
@@ -299,11 +336,11 @@ body {
 }
 
 .carousel-nav-prev {
-  left: 15px;
+  left: 0px;
 }
 
 .carousel-nav-next {
-  right: 15px;
+  right: 0px;
 }
 
 .carousel-nav:hover {
@@ -363,42 +400,73 @@ body {
     grid-template-columns: 1fr; /* Stack trending items */
   }
   .trending-item {
-    height: 260px;
+    /* Height is controlled by padding-bottom for 16:9 aspect ratio */
   }
   .trending-item h3 {
     font-size: 1.1rem;
   }
+  
+  /* Responsive styles for View All link */
+  .trending-title {
+    font-size: 1.7rem;
+  }
+  
+  .view-all-link {
+    font-size: 0.8rem;
+  }
+  
+  .cross-arrow {
+    font-size: 1rem;
+  }
+
+  /* Make carousel scrollable horizontally on small screens */
+  .carousel-viewport {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    scrollbar-width: none; /* Hide scrollbar in Firefox */
+    -ms-overflow-style: none; /* Hide scrollbar in IE/Edge */
+    padding: 0;
+  }
+  
+  .carousel-viewport::-webkit-scrollbar {
+    display: none; /* Hide scrollbar in Chrome/Safari */
+  }
 
   .posts-carousel {
-    grid-auto-columns: calc(50% - 10px); /* 2 items */
-    gap: 20px;
+    grid-auto-columns: 250px; /* Fixed width for each carousel item */
+    gap: 15px;
+    padding: 5px 10px; /* Add padding to prevent edge cutting */
+    width: auto;
+    transform: none !important; /* Disable JavaScript transform */
   }
+  
   .carousel-post .post-image-container {
-    height: 120px;
+    height: 140px;
   }
+  
   .post-title-below {
     font-size: 0.8rem;
     margin: 8px 8px 0 8px;
   }
+  
   .post-time-below {
-    /* Adjust left margin for smaller screens if title margin changes */
     margin: 4px 0 8px 8px;
     font-size: 0.7rem;
   }
 
-  .carousel-nav {
-    width: 32px;
-    height: 32px;
-  }
+  /* Hide navigation arrows and shade on mobile since we're using native scroll */
+  .carousel-nav,
   .carousel-shade-left,
   .carousel-shade-right {
-    width: 40px;
+    display: none;
   }
-  .carousel-nav-prev {
-    left: 5px;
-  }
-  .carousel-nav-next {
-    right: 5px;
+}
+
+@media (max-width: 680px) {
+  /* Show images at full brightness for small screens */
+  .post-image-container img,
+  .carousel-post .post-image-container img {
+    filter: brightness(1.0);
   }
 }
 
@@ -407,7 +475,7 @@ body {
     padding: 10px;
   }
   .trending-item {
-    height: 220px;
+    /* Height is controlled by padding-bottom for 16:9 aspect ratio */
   }
   .trending-item h3 {
     font-size: 1rem;
